@@ -72,17 +72,21 @@ function dataUsage(planLimit, day, usage){
     let remD = periodLength - day
     let proU = rem * average
     let status;
+    let stat2
     console.log(`${day} days used, ${periodLength - day} days remaining`);
     console.log(` Average daily use:${usage / day} GB/day`);
     if (average > projav){
         status = "Exceeding";
+        stat2 ="High";
     } else if (average < projav){
         status = "Below";
+        stat2 = "";
     } else {
         status = "At";
+        stat2 = "";
     }
   console.log(`You are ${status} your average daily use (${average} GB/day),
-  continuing this high usage, you'll exceed your data plan by
+  continuing this ${stat2} usage, you'll exceed your data plan by
   ${planLimit - (usage + proU)} GB.
   To stay below your data plan, use no more than ${rem / remD} GB/day.`)
     
