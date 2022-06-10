@@ -34,14 +34,57 @@ checkAge(age)
 // Exercise 3
 
 function where(x,y){
-    if (x>0 && y>0){
-        console.log("These quardinates are in plane 1")
-    } else (x<0 && y<0){
-        console.log("These quardinates are in plane")
+    if ( x >0 && y > 0){
+        return "These coordinates are in plane I"
+    } else if (x < 0 && y > 0){
+        return "These coordinates are in plane II"
+    } else if ( x <0 && y < 0) {
+        return "These coordinates are in plane III"
+    }  else if (x >0 && y<0) {
+        return "These coordinates are in plane IV"
+    } 
+}
+console.log(where(prompt("Give me a point with x&y")))
+// Exercise 4
+function val(a, b, c){
+    return a + b > c && a + c > b && b+ c > a;
+}
+
+function chktri(a, b, c){
+    let isVal = val(a, b, c);
+    if (isVal) {
+        if (a == b && b == c){
+            return "Eq";
+        } else if (a ==b || b == c || a == c){
+            return "Isos";
+        } else {
+            return "Scalene"
+        }
     }
 }
 
-// Exercise 4
-
-
 // Exercise 5
+function dataUsage(planLimit, day, usage){
+    let periodLength = 30;
+    let average = usage / day;
+    let projav = planLimit / periodLength;
+    let rem = planLimit - usage;
+    let remD = periodLength - day
+    let proU = rem * average
+    let status;
+    console.log(`${day} days used, ${periodLength - day} days remaining`);
+    console.log(` Average daily use:${usage / day} GB/day`);
+    if (average > projav){
+        status = "Exceeding";
+    } else if (average < projav){
+        status = "Below";
+    } else {
+        status = "At";
+    }
+  console.log(`You are ${status} your average daily use (${average} GB/day),
+  continuing this high usage, you'll exceed your data plan by
+  ${planLimit - (usage + proU)} GB.
+  To stay below your data plan, use no more than ${rem / remD} GB/day.`)
+    
+}
+console.log(dataUsage(30, 17, 5))
